@@ -1,5 +1,5 @@
 import './Box.css';
-import BoxRows from "./BoxRows";
+import BoxRows_1 from "./BoxRows_1";
 
 const Box = () => {
     let mvlist = [
@@ -217,7 +217,7 @@ const Box = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <BoxRows mv={mvlist}/>
+                        <BoxRows_1 mv={mvlist}/>
                     </tbody>
                 </table>
             </article>
