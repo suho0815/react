@@ -37,7 +37,9 @@ const BoxRows_1 = ({ mv }) => {
     return (
         <>
         
-        <tbody>{trTags}</tbody>
+        <tbody>
+            {trTags}
+        </tbody>
         <tfoot>
             <tr>
                 <td colSpan={4}>{footTag}</td>

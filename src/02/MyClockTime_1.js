@@ -4,11 +4,13 @@ const MyClockTime_1 = () => {
     let T = new Date().toLocaleTimeString();
     const [myTime , setmyTime] = useState(T);
 
-    // setTimeout(console.log(++cnt), 1000);
+    // console.log(setInterval(() => setmyTime(new Date().toLocaleTimeString()), 1000)); // 1초에 한 번씩 재렌더링
+    setInterval(() => setmyTime(new Date().toLocaleTimeString()),1000);
+
 
     return (
         <footer>
-            <h1>{setmyTime}</h1>
+            <h1>{myTime}</h1>
         </footer>
     );
 
