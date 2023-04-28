@@ -1,0 +1,31 @@
+.dt {
+    display: inline-flex;
+    background-color:pink;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+
+}
+.dt1{
+    display: inline-flex;
+    background-color: azure;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.dt:hover {
+    background-color: goldenrod;
+}
+
+.sp21 {
+    color: blue;
+}
+
+.sp22{
+    color: green;
+}
+
+.sp23{
+    color: red;
+}
