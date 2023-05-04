@@ -7,7 +7,7 @@ const Taccident_nav2 = ({c2, sel1, sel2, setSel2}) => {
 
     const btTag = c2Arr.map((item) => 
         <li key={item[1]}>
-            <button onClick={() => setSel2(item)}>{item[1]}</button>
+            <button onClick={() => setSel2(item)} className={item[1] == sel2[1] ? "bt2" : "bt22"}>{item[1]}</button>
         </li>
     );
 
