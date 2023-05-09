@@ -6,15 +6,22 @@ import style from './Box.module.css';
 
 const BoxRows = ({ mv }) => {
     // const mvlist = [...probs.mv];
-    console.log("boxrows", mv);
+    // console.log("boxrows", mv);
     
     // [상태변수, 상태변수를 변환할 함수] = useState(초기값)
     const [fTags, setfTags] = useState("상세 보기");
     
     // 클릭된 자료 확인
     const showMv = (line) => {
-        
-        setfTags("[" + line.movieCd + "] " + line.movieNm + " " +line.openDt);
+        let tempTag =   <tr>
+                        <td className={style.tempsp}>{line.movieCd}</td>
+                        <td className={style.tempsp}>{line.movieNm}</td>
+                        <td className={style.tempsp} colSpan={2}>{line.openDt}</td>
+                        </tr>
+
+        setfTags(tempTag);
+
+       // setfTags("[" + line.movieCd + "] " + line.movieNm + " " +line.openDt);
         
         //영화코드 : movieCd, 영화명 : movieNm, 개봉일 : openDt, 
     }

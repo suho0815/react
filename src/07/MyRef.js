@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import './MyRef.css';
 
 const MyRef = () => {
     const txtref = useRef();
@@ -14,9 +15,20 @@ const MyRef = () => {
         e.preventDefault();
         itemArr.current = [...itemArr.current, txtref.current.value];
         console.log("addItem = ", itemArr.current);
+        itemArr.current = new Set(itemArr.current); // Set으로 바꿔서 중복 제거
+        itemArr.current = [...itemArr.current];
+        
+        // itemArr.current.filter((item, idx) => {return itemArr.current.indexOf(item) === idx});
+
+        let tempTag = itemArr.current.map((item, idx) => <span key={'sp'+idx} className="sp">{item}</span>);
+        
+        setItemTag(tempTag);
+
     }
     
     const resetItem = (e) => {
+        txtref.current.value = '';
+        txtref.current.focus();
         console.log("resetItem");
     }
 
@@ -39,7 +51,7 @@ const MyRef = () => {
                         
                     </form>
                 </header>
-                <div className="grid">
+                <div >
                     {itemTag}
                 </div>
             </article>

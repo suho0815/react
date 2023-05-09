@@ -1,0 +1,8 @@
+.sp{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aqua;
+    margin: 10px;
+    font-weight: bold;
+}
