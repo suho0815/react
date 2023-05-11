@@ -1,10 +1,12 @@
 //https://apis.data.go.kr/B551011/PhotoGalleryService1/gallerySearchList1?serviceKey=1CTxFE4ICqEXauo0PqpN1xZZ5LF7hHOeQ2pTjgNg%2F9Tyho8Cz2KItgTbJB%2Fee%2F4cxVfNcuajFNqiCUQGc2xx1Q%3D%3D&numOfRows=10&pageNo=1&MobileOS=ETC&MobileApp=AppTest&arrange=A&keyword=%ec%9e%90%ea%b0%88%ec%b9%98&_type=json
 import style from './Gallery.module.css';
 import { useState, useEffect, useRef } from 'react';
+import GalleryView from './GalleryView';
 
 const Gallery = () => {
     //키워드 input
     const txt1 = useRef();
+    const [mykw, setmykw] = useState();
 
     //컴포넌트가 맨처음 랜더링 될 때
     useEffect(() => {
@@ -17,16 +19,21 @@ const Gallery = () => {
         if (txt1.current.value === '') return;
 
         let kw = encodeURI(txt1.current.value);
-        console.log(txt1.current.value, kw);
+        // console.log(txt1.current.value, kw);
+        
+        let url = "https://apis.data.go.kr/B551011/PhotoGalleryService1/gallerySearchList1?serviceKey=1CTxFE4ICqEXauo0PqpN1xZZ5LF7hHOeQ2pTjgNg%2F9Tyho8Cz2KItgTbJB%2Fee%2F4cxVfNcuajFNqiCUQGc2xx1Q%3D%3D&numOfRows=10&pageNo=1&MobileOS=ETC&MobileApp=AppTest&arrange=A&keyword=" + kw + "&_type=json" ;
+        
+        fetch(url)
+        .then((response) => response.json())
+        .then((data) => setmykw(data.response.body.items.item))
+        .catch((err) => console.log(err))
+        
     }
 
     //취소버튼
     const showClear = (e) => {
         e.preventDefault();
     }
-
-
-    let url = "https://apis.data.go.kr/B551011/PhotoGalleryService1/gallerySearchList1?serviceKey=1CTxFE4ICqEXauo0PqpN1xZZ5LF7hHOeQ2pTjgNg%2F9Tyho8Cz2KItgTbJB%2Fee%2F4cxVfNcuajFNqiCUQGc2xx1Q%3D%3D&numOfRows=10&pageNo=1&MobileOS=ETC&MobileApp=AppTest&arrange=A&keyword=%ec%9e%90%ea%b0%88%ec%b9%98&_type=json" ;
 
     return (
         <main className="container">
@@ -45,6 +52,7 @@ const Gallery = () => {
                     </div>
                 </div>
             </article>
+            {mykw && <GalleryView mkw = {mykw}/>}
         </main>
     )
 }
