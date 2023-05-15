@@ -17,7 +17,7 @@ const GalleryView = ({ mkw }) => {
         // searchkwTag = searchkw.map((item) => {
         //     searchkwTag.push(<span>{item}</span>)
         // });
-
+        
         for (let i = 0; i < searchkw.length; i++){
             searchkw[i] = <span key={i}>{searchkw[i]}</span>;
         }
@@ -41,7 +41,7 @@ const GalleryView = ({ mkw }) => {
         );
 
     }
-    console.log(mkw.length);
+    // console.log(mkw.length);
 
     for(let i = 0; i < mkw.length; i+=2){
         if( i+1 > mkw.length){
@@ -55,7 +55,7 @@ const GalleryView = ({ mkw }) => {
         }
         
     }
-    console.log(kwTags);
+    // console.log(kwTags);
 
     return (
         <div>
