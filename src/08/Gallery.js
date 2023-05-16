@@ -19,9 +19,6 @@ const Gallery = () => {
         txt1.current.focus();
     }, []);
 
-
-
-
     //확인버튼
     const show = (e) => {
         e.preventDefault();
@@ -37,26 +34,52 @@ const Gallery = () => {
         let url = "https://apis.data.go.kr/B551011/PhotoGalleryService1/gallerySearchList1?serviceKey=1CTxFE4ICqEXauo0PqpN1xZZ5LF7hHOeQ2pTjgNg%2F9Tyho8Cz2KItgTbJB%2Fee%2F4cxVfNcuajFNqiCUQGc2xx1Q%3D%3D&numOfRows=" + numOfRows + "&pageNo=" + pageno + "&MobileOS=ETC&MobileApp=AppTest&arrange=A&keyword=" + kw + "&_type=json";
         //data.response.body.totalCount
         fetch(url)
-            .then((response) => response.json())
-            .then((data) => {
+            .then((response) => response.json()) //json 데이터 형식으로 변환
+            .then((data) => { //json형식으로 변환 후 데이터 처리
                 setmykw(data.response.body.items.item);
 
                 const totalPages = Math.ceil(data.response.body.totalCount / numOfRows);
+                let tempTag = [];
                 for (let i = 1; i <= totalPages; i++) {
                     pageNumbers.push(i);
                 }
 
-                setmypg(pageNumbers.map((pageNumber) => (
-                    <span  className="page-item">
-                        <button className="pagebt" onClick={(e) => {pageno = pageNumber;
-                        // console.log(pageNumber);
-                        show(e);}}>
-                            {pageNumber}
-                        </button>
-                    </span>
-                )));
-                // console.log(url);
+                // if(totalPages > 10){
+                //     tempTag
+                // }
 
+                // for(let i = 1; i <= numOfRows; i++){
+                //     tempTag.push(i);
+                // }
+
+                tempTag = pageNumbers.map((pageNumber) => (
+                    
+                        <div className={pageno == pageNumber ? style.pagebtf : style.pagebt} onClick={(e) => {
+                            pageno = pageNumber;
+                            show(e);
+                        }}>
+                            {pageNumber}
+                        </div>
+                    
+                ));
+                tempTag.unshift(
+                <div className={style.pagebt} onClick={(e) => {
+                    pageno--;
+                    show(e);
+                }}>
+                    ⩤
+                </div>
+                );
+                tempTag.push(
+                <div className={style.pagebt} onClick={(e) => {
+                    pageno++;
+                    show(e);
+                }}>
+                    ⩥
+                </div>
+                );
+                setmypg(tempTag);
+                // console.log(url);
             })
             .catch((err) => console.log(err))
 
@@ -79,7 +102,7 @@ const Gallery = () => {
                     </div>
 
                     <div className={style.btDiv}>
-                        <button onClick={(e) => {show(e)}}>검색</button>
+                        <button onClick={(e) => { show(e) }}>검색</button>
                         <button onClick={(e) => showClear(e)}>취소</button>
                     </div>
                 </div>
