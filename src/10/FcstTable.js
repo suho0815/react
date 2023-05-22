@@ -2,6 +2,8 @@
 
 const FcstTable = () => {
 
+
+    
     return (
         
             <table>
