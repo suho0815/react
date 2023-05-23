@@ -11,6 +11,8 @@ const FcstMain = () => {
     //입력 값을 가져오기 위한 ref변수
     const txt1 = useRef();
     const sel = useRef();
+    const uorv = useRef(-1); //Ultra이면 0 Vilage이면 1
+
     //state변수
     const [dt, setDt] = useState();
     const [area, setArea] = useState();
@@ -66,6 +68,8 @@ const FcstMain = () => {
         // });
     };
 
+    // console.log(uorv.current);
+
     return (
         <article>
             <header><h1>단기예보 선택</h1></header>
@@ -82,8 +86,8 @@ const FcstMain = () => {
             </div>
             <footer>
                 <div className="grid">
-                    <Link to={`/ultra/${dt}/${area}/${x}/${y}`} role="button" >초단기예보</Link>
-                    <Link to={`/vilage/${dt}/${area}/${x}/${y}`} role="button" >단기예보</Link>
+                    <Link to={`/ultra/${dt}/${area}/${x}/${y}/${uorv.current = 0}`} role="button" >초단기예보</Link>
+                    <Link to={`/vilage/${dt}/${area}/${x}/${y}/${uorv.current = 1}`} role="button" >단기예보</Link>
                 </div>
             </footer>
         </article>

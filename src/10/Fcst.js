@@ -13,8 +13,8 @@ const Fcst = () => {
                 <FcstNav/>
                 <Routes>
                     <Route path="/" element={<FcstMain/>}/>
-                    <Route path="/ultra/:dt/:area/:x/:y" element={<UltraStrFcst/>}/>
-                    <Route path="/vilage/:dt/:area/:x/:y" element={<VilageFcst/>}/>
+                    <Route path="/ultra/:dt/:area/:x/:y/:uorv" element={<UltraStrFcst/>}/>
+                    <Route path="/vilage/:dt/:area/:x/:y/:uorv" element={<VilageFcst/>}/>
                 </Routes>
             </main>
         </BrowserRouter>

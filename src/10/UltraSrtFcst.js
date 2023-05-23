@@ -1,6 +1,8 @@
 import FcstTable from "./FcstTable";
 import { useParams } from "react-router-dom";
 import { useRef, useState } from "react";
+import code from './getcode.json';
+
 
 const UltraSrtFcst = () => {
     //초단기예보
@@ -15,11 +17,25 @@ const UltraSrtFcst = () => {
     //20230523
     const date = dt.substring(0, 4) + "/" + dt.substring(4, 6) + "/" + dt.substring(6);
 
-    const yeboitem = ['1시간강수량(RN1)', '하늘상태(SKY)', '동서바람성분(UUU)', '남북바람성분(VVV)', '습도(REH)', '강수형태(PTY)', '낙뢰(LGT)', '풍향(VEC)', '풍속(WSD)'];
-    let yeboitemTag = [];
-    yeboitemTag = yeboitem.map((item) =>
-        <option value={item.slice(-4, -1)} key={item}>{item}</option>
+    // const yeboitem = ['1시간강수량(RN1)', '하늘상태(SKY)', '동서바람성분(UUU)', '남북바람성분(VVV)', '습도(REH)', '강수형태(PTY)', '낙뢰(LGT)', '풍향(VEC)', '풍속(WSD)'];
+    
+    const yeboitem = code.filter((item) => item["예보구분"] === "초단기예보");
+    
+    // let yeboitem1 = [];
+    // for(let i = 0; i < yeboitem; i++){
+    //     yeboitem1.push(<option value={item["항목값"]} key={i} >{item["항목명"]}({item["항목값"]})</option>);
+    // }
+    let key = 0;
+    const yeboitem1 = yeboitem.map((item) => 
+        <option value={item["항목값"]} key={key++} >{item["항목명"]}({item["항목값"]})</option>
     );
+
+    // const yeboitem = code.map((item) => <option value={item.slice(-4, -1)} key={item}>{item["항목명"] +"(" + itme["항목값"] + ")"}</option>)
+
+    // let yeboitemTag = [];
+    // yeboitemTag = yeboitem.map((item) =>
+    //     <option value={item.slice(-4, -1)} key={item}>{item}</option>
+    // );
 
     //pageNo=1&numOfRows=1000&dataType=JSON&base_date=20230521&base_time=0630&nx=55&ny=127
 
@@ -39,7 +55,13 @@ const UltraSrtFcst = () => {
                 // console.log(temp);
 
                 const temp1 = temp.filter((item) => item["category"] === sel.current.value);
-                console.log(temp1);
+                // console.log(temp1);
+
+                // console.log(temp1[0].length);
+
+                // for(let i; i <temp1.key(fcstTime).legnth; i++){
+
+                // }
                 setSdata(temp1);
 
             });
@@ -68,7 +90,7 @@ const UltraSrtFcst = () => {
                     <div>
                         <select ref={sel} id="sel" onChange={(item) => getData(item)} required>
                             <option value=" " selected>선택</option>
-                            {yeboitemTag}
+                            {yeboitem1}
                         </select>
                     </div>
                 </div>
