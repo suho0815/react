@@ -1,52 +1,72 @@
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+//import code from "./getcode.json";
+//import { useState } from "react";
 
-const FcstTable = (sd) => {
+const FcstTable = ({ sd, yebo }) => {
 
     const { uorv } = useParams();
-    const  [data, setData] = useState();
+    let trTag = [];
 
+    // const  [data, setData] = useState(sd);
 
-    console.log(sd);
-    console.log(uorv);
+    // console.log(sd);
+    // console.log(uorv);
+    // console.log(typeof uorv);
+    console.log(yebo);
 
-    if(uorv === 0){
-        getUltra();
-    }else if (uorv === 1){
-        getVilage();
+    function getDatef(fcstDate){ //예보일자 문자열 보기 좋게 바꾸기 //getDatef(string)
+        return fcstDate.substring(0, 4) + "-" + fcstDate.substring(4, 6) + "-" + fcstDate.substring(6);
     }
 
+    function getTimef(fcstTime){ //예보시각 문자열 보기 좋게 바꾸기 //getTimef(string)
+        return fcstTime.substring(0,2) + ":" + fcstTime.substring(2);
+    }
 
-    // const getData = (uorv) => {
-    //     if(uorv === 0){
-    //         getUltra();
-    //     }else if (uorv === 1){
-    //         getVilage();
-    //     }
-    // }
+    function getValuef(fcstValue){ //예보 값 단위 추가
+        // 하늘상태(SKY), 강수형태(PTY) 두 경우엔 코드값 사용
+        
+        // 하늘상태(SKY) 코드 : 맑음(1), 구름많음(3), 흐림(4)
+        // 강수형태(PTY) 코드 : (초단기) 없음(0), 비(1), 비/눈(2), 눈(3), 빗방울(5), 빗방울눈날림(6), 눈날림(7) 
+        //                       (단기) 없음(0), 비(1), 비/눈(2), 눈(3), 소나기(4) 
+        
 
-    
-    const getUltra = () => {
-        // const yeboitem = ['1시간강수량(RN1)', '하늘상태(SKY)', '동서바람성분(UUU)', '남북바람성분(VVV)', '습도(REH)', '강수형태(PTY)', '낙뢰(LGT)', '풍향(VEC)', '풍속(WSD)'];
 
-        const temp = sd.map((item) => {
-            <tr>
-                <td scope="col">{item["category"]}</td>
-                <td scope="col">{item["fcstDate"]}</td>
-                <td scope="col">{item["fcstTime"]}</td>
-                <td scope="col">{item["fcstDate"]}</td>
+    }
+
+    const getUltra = (item) => {
+        console.log(item);
+        
+        trTag = sd.map((item1) =>
+            <tr key={item1["fcstTime"]}>
+                <td>{yebo[yebo.findIndex((yeboItem) => item1["category"] === yeboItem.항목값)].항목명}</td>
+                <td>{getDatef(item1["fcstDate"])}</td>
+                <td>{getTimef(item1["fcstTime"])}</td>
+                <td>{item1["fcstValue"]}</td>
             </tr>
-        });
+        );
 
-        console.log(temp);
-        setData(temp);
+        // setData(temp);
+
     }
-    
+
     const getVilage = () => {
 
     }
 
-    
+    if (uorv === '0') {
+        getUltra(sd);
+
+    } else if (uorv === '1') {
+
+    }
+
+    // const getData = (uorv) => {
+    //     if(uorv === "0"){
+    //         getUltra();
+    //     }else if (uorv === "1"){
+    //         getVilage();
+    //     }
+    // }
 
     return (
 
@@ -60,7 +80,7 @@ const FcstTable = (sd) => {
                 </tr>
             </thead>
             <tbody>
-                {data}
+                {trTag}
 
             </tbody>
         </table>
