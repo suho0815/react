@@ -17,15 +17,11 @@ const FcstMain = () => {
     const [x, setX] = useState();
     const [y, setY] = useState();
 
-
-    let pageNo;
-    let basedate;
-
     //테스트
     let tdt;
-    let tarea;
-    let nx;  
-    let ny;
+    // let tarea;
+    // let nx;  
+    // let ny;
 
     useEffect(() => {
         console.log(dt);
@@ -51,17 +47,16 @@ const FcstMain = () => {
         
     };
 
-    
     const getSel = (item) => {
-        console.log(sel.current.value);
+        // console.log(sel.current.value);
         let temp = xy.filter((item) => item["행정구역코드"] ===parseInt(sel.current.value))[0] ;
         console.log(temp["격자 X"]);
         setArea(temp["1단계"]);
         setX(temp["격자 X"]);
         setY(temp["격자 Y"]);
-        console.log(x);
+        // console.log(x);
 
-        console.log(sel.current);
+        // console.log(sel.current);
         // xy.forEach((item2) => {
         //     if(item2["행정구역코드"] == item.value){
         //         x = item2["격자 X"];
