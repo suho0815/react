@@ -8,7 +8,8 @@ import './App.css';
 // import MyRef from './07/MyRef';
 // import Gallery from './08/Gallery';
 // import RouteMain from './09/RouteMain';
-import Fcst from './10/Fcst';
+//import Fcst from './10/Fcst';
+import Fcst1 from './101/Fcst';
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
     // <MyRef/>
     // <Gallery/>
     // <RouteMain/>
-    <Fcst/>
+    <Fcst1/>
   );
 }
 
