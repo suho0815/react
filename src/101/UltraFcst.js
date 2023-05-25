@@ -32,7 +32,6 @@ const UltraFcst = () => {
         console.log('items', items);
     }, [items])
 
-
     return (
         <>
             {items && <FcstTable items={items} gubun="초단기예보"/>}
